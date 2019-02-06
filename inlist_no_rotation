@@ -20,11 +20,11 @@
 
   ! load saved model
     load_saved_model = .true.
-    saved_model_name = 'He_star_2p3_z001.mod'
+    saved_model_name = 'init_models/z0p001/He_star_2p2_z001.mod'
 
   ! save model
     save_model_when_terminate = .true.
-    save_model_filename = 'He_star_2p3_z001_collapsing.mod'
+    save_model_filename = 'He_star_2p2_z001_collapsing.mod'
 
     write_profile_when_terminate = .true.
     filename_for_profile_when_terminate = 'profile_final.data'
@@ -72,7 +72,6 @@
 
 write_header_frequency = 10
 
-!max_model_number = 80000
 !T_function1_weight = 1              ! Uncomment this during off-centre
                                      ! oxygen burning when running time
                                      ! is getting too slow
@@ -217,7 +216,6 @@ write_header_frequency = 10
    max_number_retries = -1
    min_timestep_limit = 1d-99 ! (seconds)
 
- !max_model_number = 19151
-
+ max_model_number = 16650
 
 / ! end of controls namelist
