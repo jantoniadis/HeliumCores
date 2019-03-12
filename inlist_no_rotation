@@ -18,9 +18,9 @@
   ! display on-screen plots
     pgstar_flag = .true.
 
-  ! load saved model
-  !  load_saved_model = .true.
-  !  saved_model_name = 'init_models/z0p001/He_star_2p4_z001.mod'
+   !load saved model
+   ! load_saved_model = .true.
+   ! saved_model_name = 'init_models/z0p001/He_star_2p3_z001.mod'
 
 
   ! or start at preMS and change composition
@@ -123,11 +123,11 @@ write_header_frequency = 10
     mixing_length_alpha = 2.0
     alpha_semiconvection = 1.0
     thermohaline_coeff = 1d0 ! using the Kippenhahn, R., Ruschenplatt, G., & Thomas, H.-C. 1980, A&A, 91, 175 method
-    thermohaline_option = 'Brown_Garaud_Stellmach_13'
+    !thermohaline_option = 'Brown_Garaud_Stellmach_13'
 
 
     use_Type2_opacities = .true.
-    Zbase = 2d-2
+    Zbase = 1d-3
 
     ! Fixing the position of the Lagrangian region of the mesh helps
     ! convergence near the Eddington limit
@@ -140,36 +140,35 @@ write_header_frequency = 10
     min_q_for_k_const_mass = 0.99
 
 !   Pextra_factor = -1
+    !mesh_Pgas_div_P_exponent = 0.25
 
 
 ! MASS LOSS PARAMETERS
 ! ------------------------------------------------------------------------------------------
+    hot_wind_scheme = 'Dutch'
     cool_wind_RGB_scheme = 'Dutch'
     cool_wind_AGB_scheme = 'Dutch'
     Dutch_scaling_factor = 1 ! Alse 0.8 for non-rotating, or 1.58 for enhanced loss (Yoon2017)
     RGB_to_AGB_wind_switch = 1d-4
 
-    cool_wind_full_on_T = 1d10  !K
-    hot_wind_full_on_T = 1.1d10 !K
-
-     !mass_change_full_on_dt = 1d+07
-     !mass_change_full_off_dt = 1d+06
 
 
-   ! okay_to_reduce_gradT_excess = .true.
 
-   !         gradT_excess_f1 = 1d-4
-   !         gradT_excess_f2 = 1d-3 !1d-2 
-   !         gradT_excess_age_fraction = 0.9d0
 
-   !         gradT_excess_lambda1 = 1.0
-   !         gradT_excess_beta1 = 0.35
+    okay_to_reduce_gradT_excess = .true.
 
-    !        gradT_excess_lambda2 = 0.5
-    !        gradT_excess_beta2 = 0.25
+            gradT_excess_f1 = 1d-4
+            gradT_excess_f2 = 1d-2 !1d-2 
+            gradT_excess_age_fraction = 0.9d0
 
-     !       gradT_excess_dlambda = 0.1
-     !       gradT_excess_dbeta = 0.1
+            gradT_excess_lambda1 = 1.0
+            gradT_excess_beta1 = 0.35
+
+            gradT_excess_lambda2 = 0.5
+            gradT_excess_beta2 = 0.25
+
+            gradT_excess_dlambda = 0.1
+            gradT_excess_dbeta = 0.1
 
 
    screening_mode = 'extended'
@@ -199,11 +198,13 @@ write_header_frequency = 10
     delta_lg_XHe_cntr_max = 0.0d0
     delta_lg_XHe_cntr_min = -6.0d0
     delta_lg_XHe_cntr_hard_limit = 0.03d0
+
     ! these are to properly resolve core carbon depletion
     delta_lg_XC_cntr_limit = 0.01d0
     delta_lg_XC_cntr_max = 0.0d0
     delta_lg_XC_cntr_min = -5.0d0
     delta_lg_XC_cntr_hard_limit = 0.02d0
+
     ! this is mainly to resolve properly when the star goes off the main sequence
     delta_HR_limit = 0.005d0
     ! relax default dHe/He, otherwise growing He core can cause things to go at a snail pace
@@ -217,8 +218,8 @@ write_header_frequency = 10
 ! --------------------------------------------------------------------------------------------- 
 
   ! extra spatial resolution: 0.5, 0.8
-   mesh_delta_coeff = 3.5 ! 3.5 for late stages
-   mesh_delta_coeff_for_highT = 3.5
+   mesh_delta_coeff = 1.0 ! 3.5 for late stages
+   mesh_delta_coeff_for_highT = 3.0
  
   ! temporal resolution 
    varcontrol_target = 1d-3 ! 1d-1, 1d-2, 1d-3, 1d-4
